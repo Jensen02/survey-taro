@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import Taro, { Component, Config } from '@tarojs/taro'
 import { Provider } from '@tarojs/mobx'
 // import counterStore from './store/counter'
