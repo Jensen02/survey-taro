@@ -1,59 +1,94 @@
 import Taro, { Component, Config } from '@tarojs/taro'
 import { Provider } from '@tarojs/mobx'
-import Index from './pages/index'
-
-import counterStore from './store/counter'
-
+// import counterStore from './store/counter'
+import Questionnaire from './pages/questionnaire/questionnaire'
+import User from './pages/user/user'
 import './app.scss'
-
-// 如果需要在 h5 环境中开启 React Devtools
-// 取消以下注释：
-// if (process.env.NODE_ENV !== 'production' && process.env.TARO_ENV === 'h5')  {
-//   require('nerv-devtools')
-// }
+import questionnaire from '../public/icon/questionnaire.png'
+import questionnaireSelected from '../public/icon/questionnaire_selected.png'
+import user from '../public/icon/user.png'
+import userSelected from '../public/icon/user_selected.png' 
 
 const store = {
-  counterStore
+  // counterStore
 }
 
 class App extends Component {
-
-  /**
-   * 指定config的类型声明为: Taro.Config
-   *
-   * 由于 typescript 对于 object 类型推导只能推出 Key 的基本类型
-   * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
-   * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
-   */
   config: Config = {
     pages: [
-      'pages/index/index'
+      'pages/questionnaire/questionnaire',
+      'pages/user/user'
     ],
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
-      navigationBarTitleText: 'WeChat',
-      navigationBarTextStyle: 'black'
+      navigationBarTextStyle: 'black',
+      navigationBarTitleText: 'WeChat'
+    },
+    tabBar: {
+      color: '#444',
+      selectedColor: '#6190e8',
+      backgroundColor: '#fff',
+      borderStyle: 'black',
+      position: 'bottom',
+      list: [
+        {
+          pagePath: 'pages/questionnaire/questionnaire',
+          text: '问卷广场',
+          iconPath: questionnaire,
+          selectedIconPath: questionnaireSelected
+        },
+        {
+          pagePath: 'pages/user/user',
+          text: '个人中心',
+          iconPath: user,
+          selectedIconPath: userSelected
+        }
+      ]
     }
   }
-
-  componentDidMount () {}
-
-  componentDidShow () {}
-
-  componentDidHide () {}
-
-  componentDidCatchError () {}
-
-  // 在 App 类中的 render() 函数没有实际作用
-  // 请勿修改此函数
-  render () {
+  render() {
     return (
-      <Provider store={store}>
-        <Index />
+      <Provider store={store} >
+        <Questionnaire />
+        <User />
       </Provider>
     )
   }
 }
+
+// App.config = {
+//   pages: [
+//     'pages/questionnaire/questionnaire',
+//     'pages/user/user'
+//   ],
+//   window: {
+//     backgroundTextStyle: 'light',
+//     navigationBarBackgroundColor: '#fff',
+//     navigationBarTextStyle: 'black',
+//     navigationBarTitleText: 'WeChat'
+//   },
+//   tabBar: {
+//     color: '#444',
+//     selectedColor: '#6190e8',
+//     backgroundColor: '#fff',
+//     borderStyle: 'block',
+//     position: 'bottom',
+//     list: [
+//       {
+//         pagePath: 'pages/questionnaire/questionnaire',
+//         text: '问卷广场',
+//         iconPath: '../public/icon/questionnaire.png',
+//         selectedIconPath: '../public/icon/questionnaire_selected.png'
+//       },
+//       {
+//         pagePath: 'pages/user/user',
+//         text: '个人中心',
+//         iconPath: '../public/icon/user.png',
+//         selectedIconPath: '../public/icon/user_selected.png'
+//       }
+//     ]
+//   }
+// }
 
 Taro.render(<App />, document.getElementById('app'))
