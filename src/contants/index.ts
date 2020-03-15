@@ -1,0 +1,12 @@
+/*
+ * @Description: 
+ * @GitHub: https://github.com/Jensen02
+ * @Author: Jensen
+ * @Date: 2020-03-14 12:35:42
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2020-03-14 13:39:55
+ */
+export const RADIO_ITEM = 'RADIO_ITEM'
+export const MULTIPLE_ITEM = 'MULTIPLE_ITEM'
+export const JUDGE_ITEM = 'JUDGE_ITEM'
+export const ANSWER_ITEM = 'ANSWER_ITEM'

@@ -1,0 +1,23 @@
+.item {
+  margin: 20px 40px 30px;
+  overflow: hidden;
+  .label {
+    margin-right: 10px;
+    overflow: hidden;
+  }
+  .market {
+    color: red;
+  }
+  .content {
+    margin-top: 10px;
+  }
+  .date {
+    height: 100%;
+  }
+  .at-input {
+    margin-left: 0;
+  }
+}
+.btn {
+  margin: 180px 40px 0;
+}

@@ -11,5 +11,9 @@ function User () {
   )
 }
 
+User.config = {
+  navigationBarTitleText: '个人中心',
+}
+
 export default User
 

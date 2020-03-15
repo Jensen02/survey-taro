@@ -1,0 +1,15 @@
+@import "~taro-ui/dist/style/components/article.scss";
+.header {
+  margin: 40px 40px 30px;
+  .info {
+    display: flex;
+    justify-content: space-between;
+  }
+  .at-article__info {
+    margin-top: 25px;
+  }
+  .at-article__info, .at-article__h2, .at-article__p {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}

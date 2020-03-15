@@ -4,7 +4,7 @@
  * @Author: Jensen
  * @Date: 2019-12-13 23:01:20
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-03-12 12:52:13
+ * @LastEditTime: 2020-03-14 16:09:13
  */
 const config = {
   projectName: 'surveyTaro',
@@ -38,6 +38,20 @@ const config = {
   },
   defineConstants: {
   },
+  copy: {
+    patterns: [
+      {
+        from: 'src/components/vant-weapp/dist/wxs/',
+        to: 'dist/components/vant-weapp/dist/wxs/'
+      },
+      {
+        from: 'src/components/vant-weapp/dist/common/',
+        to: 'dist/components/vant-weapp/dist/common/'
+      }
+    ],
+    options: {
+    }
+  },
   mini: {
     postcss: {
       autoprefixer: {
@@ -53,7 +67,9 @@ const config = {
       pxtransform: {
         enable: true,
         config: {
-
+          // designWidth: 750,
+          // platform: 'weapp',
+          // selectorBlackList: [/^.van-.*?$/, /^.weui-.*?$/]
         }
       },
       url: {
@@ -63,7 +79,7 @@ const config = {
         }
       },
       cssModules: {
-        enable: true, // 默认为 false，如需使用 css modules 功能，则设为 true
+        enable: false, // 默认为 false，如需使用 css modules 功能，则设为 true
         config: {
           namingPattern: 'module', // 转换模式，取值为 global/module
           generateScopedName: '[name]__[local]___[hash:base64:5]'
