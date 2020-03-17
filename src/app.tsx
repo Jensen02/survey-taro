@@ -11,6 +11,35 @@ import user from './images/icon/user.png'
 import userSelected from './images/icon/user_selected.png'
 
 class App extends Component {
+  // 检查用户是否登录
+  // 若用户已登录，检查登录信息是否有效
+  // 用户登录信息有效且已授权获取个人信息，则获取个人信息，并在本地存储
+  componentDidMount() {
+    const skey = String(Taro.getStorageSync('skey'))
+    if (!skey.length) {
+      return
+    }
+    Taro.checkSession().then(() => {
+      Taro.getSetting().then(res => {
+        if (res.authSetting['scope.userInfo']) {
+          Taro.getUserInfo().then(response => {
+            Taro.setStorage({
+              key: 'userInfo',
+              data: response.userInfo
+            })
+            Taro.setStorage({
+              key: 'isLogin',
+              data: true
+            })
+          }).catch(() => {
+            return
+          })
+        }
+      })
+    }).catch(() => {
+      return
+    })
+  }
   config: Config = {
     pages: [
       'pages/questionnaire/questionnaire',
@@ -21,7 +50,10 @@ class App extends Component {
       'pages/judge/judge',
       'pages/multiple/multiple',
       'pages/radio/radio',
-      'pages/survey/survey'
+      'pages/survey/survey',
+      'pages/record/record',
+      'pages/collection/collection',
+      'pages/info/info'
     ],
     window: {
       backgroundTextStyle: 'light',

@@ -1,9 +1,9 @@
 /* eslint-disable react/jsx-no-duplicate-props */
-import Taro, { useRouter, useState， useShareAppMessage } from '@tarojs/taro'
-import { View, Text } from '@tarojs/components'
-import { AtButton, AtActionSheet, AtActionSheetItem, AtDivider, AtToast, AtModal } from 'taro-ui'
+import Taro, { useRouter, useState } from '@tarojs/taro'
+import { View, Text, Radio, RadioGroup, Checkbox, CheckboxGroup } from '@tarojs/components'
+import { AtButton, AtActionSheet, AtActionSheetItem, AtDivider, AtModal, AtTextarea } from 'taro-ui'
 import { useSelector } from '@tarojs/redux'
-import Header from '../../components/Header/Header'
+import Header from '@/components/Header/Header'
 import './edit.scss'
 
 const Edit = () => {
@@ -11,42 +11,12 @@ const Edit = () => {
   const { title, description, endTime, persons } = router.params
   const [isOpen, setIsOpen] = useState(false)
   const [isTost, setIsToat] = useState(false)
-  const [choseRadio, setChoseRadio] = useState('')
-
-  // const createActionSheetItem = () => {
-  //   const temp = ['radio', 'multiple', 'answer', 'judge']
-  //   return temp.map((item) => {
-  //     return (
-  //       <AtActionSheetItem key={item} onClick={() => {
-  //         setIsOpen(false)
-  //         Taro.navigateTo({ url: `/pages/topic/topic?type=${item}` })
-  //         }}
-  //       >
-  //         多选题
-  //       </AtActionSheetItem>
-  //     )
-  //   })
-  // }
-  // const item = createActionSheetItem()
-  const { radio } = useSelector((state: any) => state.topicReducer)
+  const { radio, multiple, judge, answer, number } = useSelector((state: any) => state.topicReducer)
 
   const toPage = (page) => {
     setIsOpen(false)
     Taro.navigateTo({ url: `/pages/${page}/${page}` })
   }
-
-  const share = () => {
-    useShareAppMessage(res => {
-      if (res.from === 'button') {
-        // 来自页面内转发按钮
-        console.log(res.target)
-      }
-      return {
-        title: '发布问卷',
-        path: '/pages/edit/edit'
-      }
-    })
-  } 
 
   return (
     <View>
@@ -62,13 +32,93 @@ const Edit = () => {
             radio.map((item, index) => {
               return (
                 <View key={index}>
-                  <Text className='problem'>{`${index+1} - ${item.problem}`}</Text>
-                  <van-radio-group value={choseRadio} onchange={(e) => console.log(e)} key={index}>
-                    <van-radio name='a' key='a' checked-color='#6190e8'>{item.a_content}</van-radio>
-                    <van-radio name='b' key='b' checked-color='#6190e8'>{item.b_content}</van-radio>
-                    <van-radio name='c' key='c' checked-color='#6190e8'>{item.c_content}</van-radio>
-                    <van-radio name='d' key='d' checked-color='#6190e8'>{item.d_content}</van-radio>
-                  </van-radio-group>
+                  <Text className='problem'>{`${number} - ${item.problem}`}</Text>
+                  <RadioGroup key={index} onChange={(e) => console.log(e)}>
+                    <Radio value='a' key='a' color='#6190e8' className='item__child'>
+                      <Text className='text'>{item.a_content}</Text>
+                    </Radio>
+                    <Radio value='b' key='b' color='#6190e8' className='item__child'>
+                      <Text className='text'>{item.b_content}</Text>
+                    </Radio>
+                    <Radio value='c' key='c' color='#6190e8' className='item__child'>
+                      <Text className='text'>{item.c_content}</Text>
+                    </Radio>
+                    <Radio value='d' key='d' color='#6190e8' className='item__child'>
+                      <Text className='text'>{item.d_content}</Text>
+                    </Radio>
+                  </RadioGroup>
+                  <AtDivider />
+                </View>
+              )
+            })
+          }
+        </View>
+        <View className='multiple'>
+          {
+            multiple.map((item, index) => {
+              return (
+                <View key={index}>
+                  <Text className='problem'>{`${number} - ${item.problem}`}</Text>
+                  <CheckboxGroup>
+                    <Checkbox value='a' color='#6190e8' className='item__child'>
+                      <Text className='text'>{item.a_content}</Text>
+                    </Checkbox>
+                    <Checkbox value='b' color='#6190e8' className='item__child'>
+                      <Text className='text'>{item.b_content}</Text>
+                    </Checkbox>
+                    <Checkbox value='c' color='#6190e8' className='item__child'>
+                      <Text className='text'>{item.c_content}</Text>
+                    </Checkbox>
+                    <Checkbox value='d' color='#6190e8' className='item__child'>
+                      <Text className='text'>{item.d_content}</Text>
+                    </Checkbox>
+                    <Checkbox value='e' color='#6190e8' className='item__child'>
+                      <Text className='text'>{item.e_content}</Text>
+                    </Checkbox>
+                    <Checkbox value='f' color='#6190e8' className='item__child'>
+                      <Text className='text'>{item.f_content}</Text>
+                    </Checkbox>
+                  </CheckboxGroup>
+                  <AtDivider />
+                </View>
+              )
+            })
+          }
+        </View>
+        <View className='judge'>
+          {
+            judge.map((item, index) => {
+              return (
+                <View key={index}>
+                  <Text className='problem'>{`${number} - ${item.problem}`}</Text>
+                  <RadioGroup key={index} onChange={(e) => console.log(e)} className='item__child__judge'>
+                    <Radio value='a' key='a' color='#6190e8'>
+                      <Text className='text'>{item.a_content}</Text>
+                    </Radio>
+                    <Radio value='b' key='b' color='#6190e8'>
+                      <Text className='text'>{item.b_content}</Text>
+                    </Radio>
+                  </RadioGroup>
+                  <AtDivider />
+                </View>
+              )
+            })
+          }
+        </View>
+        <View className='answer'>
+          {
+            answer.map((item, index) => {
+              return (
+                <View key={index}>
+                  <Text className='problem'>{`${number} - ${item.problem}`}</Text>
+                  <AtTextarea
+                    showConfirmBar
+                    count={false}
+                    value=''
+                    onChange={() => {}}
+                    maxLength={200}
+                    placeholder='你的回答是...'
+                  />
                   <AtDivider />
                 </View>
               )
@@ -98,17 +148,17 @@ const Edit = () => {
       <AtModal
         isOpened={isTost}
         title='标题'
-        cancelText='取消'
+        cancelText='取消'inline-block
         confirmText='确认'
         onCancel={() => setIsToat(false)}
-        onConfirm={ () => share() }
+        // onConfirm={ () => share() }
         content='问卷创建成功，赶快发布吧!'
       />
       <AtButton type='secondary' className='btn' onClick={() => setIsOpen(true)}>
         <View className='at-icon at-icon-add-circle'></View>
         添加题目
       </AtButton>
-      <AtButton type='primary' onClick={() => setIsToat(true)}>创建问卷</AtButton>
+      <AtButton type='primary' onClick={() => setIsToat(true)} className='create__topic'>创建问卷</AtButton>
     </View>
   )
 }

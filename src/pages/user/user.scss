@@ -1,0 +1,22 @@
+.person__info {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  padding: 20px 40px;
+  margin-top: 40px;
+  .person__info__name {
+    margin-left: 50px;
+  }
+}
+.at-divider {
+  height: 0;
+}
+.at-list {
+  margin: 40px 0;
+}
+.login__btn {
+  margin: 120px 40px 0;
+}
+page {
+  background-color: #F0F0F0;
+}

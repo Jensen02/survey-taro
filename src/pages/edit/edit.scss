@@ -5,12 +5,37 @@
   margin: 50px 40px 200px;
 }
 .content {
-  .radio {
-    .problem {
-      margin-left: 40px;
-    }
-    .van-radio {
-      margin: 20px 0 0 50px;
+  .problem {
+    display: inline-block;
+    margin-bottom: 20px;
+    margin-left: 40px;
+    font-weight: bold;
+  }
+  .item__child {
+    display: block;
+    margin: 20px 0 0 50px;
+    color: #999;
+    .text {
+      width: 610px;
+      display: inline-block;
     }
   }
+  .item__child__judge {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  .answer {
+    overflow: hidden;
+    .at-textarea {
+      width: 660px;
+      margin-left: 50px;
+    }
+  }
+}
+.create__topic {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 1000;
+  opacity: 1;
 }

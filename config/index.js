@@ -1,11 +1,15 @@
+/* eslint-disable import/no-commonjs */
 /*
  * @Description: 通用配置
  * @GitHub: https://github.com/Jensen02
  * @Author: Jensen
  * @Date: 2019-12-13 23:01:20
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-03-14 16:09:13
+ * @LastEditTime: 2020-03-15 10:08:11
  */
+// import path from 'path'
+const path = require('path')
+
 const config = {
   projectName: 'surveyTaro',
   date: '2019-12-13',
@@ -17,6 +21,9 @@ const config = {
   },
   sourceRoot: 'src',
   outputRoot: 'dist',
+  alias: {
+    '@/components': path.resolve(__dirname, '..', 'src/components'),
+  },
   babel: {
     sourceMap: true,
     presets: [
