@@ -5,7 +5,7 @@
  * @Author: Jensen
  * @Date: 2020-03-14 12:35:29
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-03-17 23:00:16
+ * @LastEditTime: 2020-03-19 22:51:24
  */
 import {
   RADIO_ITEM,
@@ -13,7 +13,8 @@ import {
   JUDGE_ITEM,
   ANSWER_ITEM,
   USER_INFO,
-  USER_IS_LOGIN
+  USER_IS_LOGIN,
+  QUESTION_ITEM
 } from '../contants'
 
 export const setRadio = (data: any) => {
@@ -64,6 +65,13 @@ export const setUserInfo = (data) => {
 export const setUserIsLogin = (data) => {
   return {
     type: USER_IS_LOGIN,
+    payload: data
+  }
+}
+
+export const setQuestion = (data) => {
+  return {
+    type: QUESTION_ITEM,
     payload: data
   }
 }

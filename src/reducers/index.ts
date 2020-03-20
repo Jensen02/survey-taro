@@ -4,7 +4,7 @@
  * @Author: Jensen
  * @Date: 2020-03-14 12:35:36
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-03-18 01:43:58
+ * @LastEditTime: 2020-03-19 22:51:59
  */
 import { combineReducers } from 'redux'
 import {
@@ -13,7 +13,8 @@ import {
   JUDGE_ITEM,
   ANSWER_ITEM,
   USER_INFO,
-  USER_IS_LOGIN
+  USER_IS_LOGIN,
+  QUESTION_ITEM
 } from '../contants'
 
 interface Topic {
@@ -23,7 +24,8 @@ interface Topic {
   answer: any[],
   number: number,
   userInfo: object,
-  isLogin: boolean
+  isLogin: boolean,
+  question: object
 }
 
 const INIT_STATE: Topic = {
@@ -33,7 +35,8 @@ const INIT_STATE: Topic = {
   answer: [],
   number: 0,
   userInfo: {},
-  isLogin: false
+  isLogin: false,
+  question: {}
 }
 
 const topicReducer = (state = INIT_STATE, action) => {
@@ -77,6 +80,11 @@ const topicReducer = (state = INIT_STATE, action) => {
       return {
         ...state,
         isLogin: payload
+      }
+    case QUESTION_ITEM:
+      return {
+        ...state,
+        question: payload
       }
     default:
       return {

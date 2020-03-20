@@ -7,7 +7,7 @@ import './create.scss'
 const Create = () => {
   const [title, setTitle] = useState('')
   const [description, setDesc] = useState('')
-  const [persons, setPersons] = useState()
+  const [personLimit, setPersons] = useState()
   const [endTime, setDate] = useState(moment(moment().add(1, 'days')).format('YYYY-MM-DD'))
 
   const toEdit = () => {
@@ -32,7 +32,7 @@ const Create = () => {
       })
       return
     }
-    const url = `/pages/edit/edit?title=${title}&description=${description}&persons=${persons}&endTime=${endTime}`
+    const url = `/pages/edit/edit?title=${title}&description=${description}&personLimit=${personLimit}&endTime=${endTime}`
     Taro.navigateTo({ url: url })
   }
 
@@ -70,7 +70,7 @@ const Create = () => {
           title='限制人数'
           type='number'
           placeholder='限制人数'
-          value={persons}
+          value={personLimit}
           onChange={(_, e) => setPersons((e.target as any).value)}
         />
       </View>

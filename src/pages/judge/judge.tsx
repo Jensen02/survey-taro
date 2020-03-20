@@ -12,10 +12,10 @@ const Judge = () => {
         return { ...state, problem: action.payload }
         break
       case 'a':
-        return {...state, a_content: action.payload}
+        return {...state, yesContent: action.payload}
         break
       case 'b':
-        return {...state, b_content: action.payload}
+        return {...state, noContent: action.payload}
         break
       default: return { ...state }
     }
@@ -23,8 +23,8 @@ const Judge = () => {
   const [state, dispatch] = useReducer(reducer, {
     type: 'judge',
     problem: '',
-    a_content: '',
-    b_content: ''
+    yesContent: '',
+    noContent: ''
   })
   const uDispatch = useDispatch()
 
@@ -63,13 +63,13 @@ const Judge = () => {
         <AtInput
           name='a'
           placeholder='选项一'
-          value={state.a_content}
+          value={state.yesContent}
           onChange={(_, e) => dispatch({ type: 'a', payload: (e.target as any).value })}
         />
         <AtInput
           name='b'
           placeholder='选项二'
-          value={state.b_content}
+          value={state.noContent}
           onChange={(_, e) => dispatch({ type: 'b', payload: (e.target as any).value })}
         />
       </View>
