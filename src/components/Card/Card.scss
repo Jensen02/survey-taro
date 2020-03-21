@@ -1,0 +1,28 @@
+.card {
+  width: 80%;
+  height: 220px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 0 30px 5px #e5e5e5;
+  overflow: hidden;
+  .card__title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #666;
+    font-size: 36px;
+  }
+  .card__content {
+    display: -webkit-box;
+    height: 140px;
+    overflow: hidden;
+    // text-overflow: ellipsis;
+    // word-break: break-all;
+    // -webkit-box-orient: vertical;
+    // -webkit-line-clamp: 2;
+    color: #ccc;
+    font-size: 32px;
+  }
+}

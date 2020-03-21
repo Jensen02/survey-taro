@@ -67,11 +67,17 @@ function Questionnaire () {
       }
     ]
   
-  const handleClick = (item: object, index: number) => {
+  const handleClick = (item: any, index: number) => {
     console.log('item: ', item, 'index: ', index)
-    index === 0 && Taro.navigateTo({
-      url: '/pages/create/create'
-    })
+    if (index === 0) {
+        Taro.navigateTo({
+        url: '/pages/create/create'
+      })
+    } else {
+      Taro.navigateTo({
+        url: `/pages/templete/templete?type=${item.type}`
+      })
+    }
   }
   return (
     <View>

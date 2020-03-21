@@ -53,7 +53,8 @@ class App extends Component {
       'pages/survey/survey',
       'pages/record/record',
       'pages/collection/collection',
-      'pages/info/info'
+      'pages/info/info',
+      'pages/templete/templete'
     ],
     window: {
       backgroundTextStyle: 'light',
