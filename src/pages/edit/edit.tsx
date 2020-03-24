@@ -34,7 +34,7 @@ const Edit = () => {
     const skey = Taro.getStorageSync('skey')
     data['skey'] = encodeURIComponent(skey)
     Taro.request({
-      url: 'https://www.zhaosongsong.cn/api/v1/create/questionnaire',
+      url: 'https://www.zhaosongsong.cn/api/v1/questionnaire/create',
       data,
       method: 'POST'
     }).then((res) => {

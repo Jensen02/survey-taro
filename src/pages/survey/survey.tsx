@@ -1,19 +1,15 @@
 import Taro, { useRouter, useShareAppMessage, useState } from '@tarojs/taro'
 import { View, RadioGroup, Radio, CheckboxGroup, Checkbox, Text } from '@tarojs/components'
 import { AtDivider, AtTextarea, AtButton } from 'taro-ui'
-// import { useSelector, useDispatch } from '@tarojs/redux'
-// import { setQuestion } from '../../actions'
 import Header from '../../components/Header/Header'
 import './survey.scss'
 
 const Survey = () => {
   const [isSubmit, setIsSubmit] = useState(false)
   const router = useRouter()
-  // const dispatch = useDispatch()
-  // const { question } = useSelector((state: any) => state.topicReducer)
   const { question } = router.params
   console.log('ques: ', JSON.parse(question))
-  const { radios, multiples, judges, answers, title, description, endTime, personLimit } = JSON.parse(question)
+  const { id, radios, multiples, judges, answers, title, description, endTime, personLimit } = JSON.parse(question)
 
   useShareAppMessage((res) => {
     console.log('resshare: ', res)
@@ -23,6 +19,19 @@ const Survey = () => {
       path: `/pages/survey/survey?question=${question}`
     }
   })
+
+  const handleClick = () => {
+    setIsSubmit(true)
+    console.log('share')
+    Taro.request({
+      url: 'https://www.zhaosongsong.cn/api/v1/questionnaire/update/state',
+      data: {
+        id,
+        state: 'public'
+      },
+      method: 'POST'
+    })
+  }
 
   return (
     <View>
@@ -134,11 +143,11 @@ const Survey = () => {
       </View>
       {
         !isSubmit
-        ? <AtButton type='secondary' className='btn' openType='share'>
+        ? <AtButton type='secondary' className='btn' openType='share' onClick={() => handleClick()}>
             <View className='at-icon at-icon-share-2'></View>
               发布问卷
           </AtButton>
-        : <AtButton type='secondary' className='btn'>
+        : <AtButton type='primary' className='btn'>
             提交
           </AtButton>
       }

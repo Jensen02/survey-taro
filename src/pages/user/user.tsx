@@ -30,9 +30,11 @@ const userLogin = () => {
       },
       method: 'POST'
     }).then((response) => {
-      Taro.setStorage({ key: 'skey', data: response.data.skey })
-      dispatch(setUserIsLogin(true))
-      Taro.setStorage({ key: 'isLogin', data: true })
+      if (response.data.skey) {
+        Taro.setStorage({ key: 'skey', data: response.data.skey })
+        dispatch(setUserIsLogin(true))
+        Taro.setStorage({ key: 'isLogin', data: true })
+      }
     })
   }).catch((error) => {
     console.log('error: ', error)
@@ -140,6 +142,7 @@ const User = () => {
           </Button>
         </AtModalAction>
       </AtModal>
+       <AtToast isOpened={isOpenToast} text='授权失败' status='error'></AtToast>
       <AtToast isOpened={isOpenToast} text='授权失败' status='error'></AtToast>
       {
         !isLogin

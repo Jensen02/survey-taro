@@ -5,7 +5,7 @@
  * @Author: Jensen
  * @Date: 2020-03-14 12:35:29
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-03-19 22:51:24
+ * @LastEditTime: 2020-03-24 23:30:30
  */
 import {
   RADIO_ITEM,
@@ -14,7 +14,10 @@ import {
   ANSWER_ITEM,
   USER_INFO,
   USER_IS_LOGIN,
-  QUESTION_ITEM
+  QUESTION_ITEM,
+  CREATE_ITEM,
+  FINISH_ITEM,
+  PUBLIC_ITEM
 } from '../contants'
 
 export const setRadio = (data: any) => {
@@ -55,6 +58,32 @@ export const setAnswer = (data: any) => {
   }
 }
 
+export const setRadioWithTemplete = (data: any) => {
+  return {
+    type: RADIO_ITEM,
+    payload: data
+  }
+}
+
+export const setMultipleWithTemplete = (data: any) => {
+  return {
+    type: MULTIPLE_ITEM,
+    payload: data
+  }
+}
+export const setJudgeWithTemplete = (data: any) => {
+  return {
+    type: JUDGE_ITEM,
+    payload: data
+  }
+}
+export const setAnswerWithTemplete = (data: any) => {
+  return {
+    type: ANSWER_ITEM,
+    payload: data
+  }
+}
+
 export const setUserInfo = (data) => {
   return {
     type: USER_INFO,
@@ -72,6 +101,27 @@ export const setUserIsLogin = (data) => {
 export const setQuestion = (data) => {
   return {
     type: QUESTION_ITEM,
+    payload: data
+  }
+}
+
+export const setCreateItem = (data) => {
+  return {
+    type: CREATE_ITEM,
+    payload: data
+  }
+}
+
+export const setPublicItem = (data) => {
+  return {
+    type: PUBLIC_ITEM,
+    payload: data
+  }
+}
+
+export const setFinishItem = (data) => {
+  return {
+    type: FINISH_ITEM,
     payload: data
   }
 }

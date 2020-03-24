@@ -4,7 +4,7 @@
  * @Author: Jensen
  * @Date: 2020-03-14 12:35:36
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-03-19 22:51:59
+ * @LastEditTime: 2020-03-24 23:27:03
  */
 import { combineReducers } from 'redux'
 import {
@@ -14,7 +14,10 @@ import {
   ANSWER_ITEM,
   USER_INFO,
   USER_IS_LOGIN,
-  QUESTION_ITEM
+  QUESTION_ITEM,
+  CREATE_ITEM,
+  PUBLIC_ITEM,
+  FINISH_ITEM
 } from '../contants'
 
 interface Topic {
@@ -25,7 +28,10 @@ interface Topic {
   number: number,
   userInfo: object,
   isLogin: boolean,
-  question: object
+  question: object,
+  createItem: any[],
+  publicItem: any[],
+  finishItem: any[]
 }
 
 const INIT_STATE: Topic = {
@@ -36,7 +42,10 @@ const INIT_STATE: Topic = {
   number: 0,
   userInfo: {},
   isLogin: false,
-  question: {}
+  question: {},
+  createItem: [],
+  publicItem: [],
+  finishItem: []
 }
 
 const topicReducer = (state = INIT_STATE, action) => {
@@ -46,29 +55,25 @@ const topicReducer = (state = INIT_STATE, action) => {
     case RADIO_ITEM:
       return {
         ...state,
-        radio: payload,
-        number: state.number + 1
+        radio: payload
       }
       break
     case MULTIPLE_ITEM:
       return {
         ...state,
-        multiple: payload,
-        number: state.number + 1
+        multiple: payload
       }
       break
     case JUDGE_ITEM:
       return {
         ...state,
-        judge: payload,
-        number: state.number + 1
+        judge: payload
       }
       break
     case ANSWER_ITEM:
       return {
         ...state,
-        answer: payload,
-        number: state.number + 1
+        answer: payload
       }
       break
     case USER_INFO:
@@ -85,6 +90,21 @@ const topicReducer = (state = INIT_STATE, action) => {
       return {
         ...state,
         question: payload
+      }
+    case CREATE_ITEM:
+      return {
+        ...state,
+        createItem: payload
+      }
+    case PUBLIC_ITEM:
+      return {
+        ...state,
+        publicItem: payload
+      }
+    case FINISH_ITEM:
+      return {
+        ...state,
+        finishItem: payload
       }
     default:
       return {

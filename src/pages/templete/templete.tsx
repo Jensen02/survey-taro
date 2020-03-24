@@ -10,7 +10,12 @@ const Templete = () => {
   return (
     <View>
       <Text>{ type }</Text>
-      <Card />
+      <Card
+        qId='sdgdsfgdsfgsd34f34fdf3rr3d'
+        type='templete'
+        titleItem='关于元宵节的调查'
+        content='这是文本段落。这是文本段落。这是文本段落。这是文本段落。这是文本段落。这是文本段sdfsdfgsd'
+      />
       <Card />
       <Card />
     </View>

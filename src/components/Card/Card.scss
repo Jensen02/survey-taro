@@ -1,4 +1,5 @@
 .card {
+  position: relative;
   width: 80%;
   height: 220px;
   margin: 40px auto;
@@ -8,6 +9,7 @@
   box-shadow: 0 0 30px 5px #e5e5e5;
   overflow: hidden;
   .card__title {
+    width: 550px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -25,4 +27,25 @@
     color: #ccc;
     font-size: 32px;
   }
+  .at-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    // height: 30px;
+    color: #b2b2b2;
+  }
+  text {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    // height: 30px;
+    color: #b2b2b2;
+  }
+}
+.at-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  // height: 30px;
+  color: #b2b2b2;
 }
