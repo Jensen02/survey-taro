@@ -1,4 +1,4 @@
-import Taro, { useState, useCallback } from '@tarojs/taro'
+import Taro, { useState } from '@tarojs/taro'
 import { View, Button } from '@tarojs/components'
 import { useDispatch, useSelector } from '@tarojs/redux'
 import {
@@ -10,53 +10,12 @@ import {
   AtMessage
 } from "taro-ui"
 import Card from '@/components/Card/Card'
-import { setCollections } from '../../actions'
+import { getCollection } from '../../actions'
 import './collection.scss'
 
-// 获取所有回收站问卷
-const getConllections = useCallback(() => {
-  const dispatch = useDispatch()
-  Taro.request({
-    url: 'https://www.zhaosongsong.cn/api/v1/questionnaire/collection/query/all',
-    data: {},
-    method: 'GET'
-  }).then((res) => {
-    if (res.data.code === 1) {
-      dispatch(setCollections(res.data.data))
-    }
-  })
-}, [])
+const dispatch = useDispatch()
 
-// 删除问卷
-// const deleteCollection = useCallback((id: string) => {
-//   Taro.request({
-//     url: 'https://www.zhaosongsong.cn/api/v1/questionnaire/collection/delete',
-//     data: {
-//       id
-//     },
-//     method: 'POST'
-//   }).then((res) => {
-//     if (res.data.code === 1) {
-//       Taro.atMessage({
-//         'type': 'success',
-//         'message': '问卷删除成功'
-//       })
-//     }
-//   })
-// }, [])
-
-// // 还原问卷
-// const recoverQuestionnaire = useCallback((id: string) => {
-//   Taro.request({
-//     url: 'https://wwwzhaosongsong.cn/api/v1/questionnnaire/collection/recover',
-//     data: {
-//       id
-//     },
-//     method: 'POST'
-//   })
-// }, [])
-
-getConllections()
+dispatch(getCollection())
 
 const Collection = () => {
   const [isOpen, setIsOpen] = useState(false)

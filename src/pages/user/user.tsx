@@ -118,6 +118,12 @@ const User = () => {
           thumb={collectionIcon}
           onClick={() => Taro.navigateTo({ url: '/pages/collection/collection' })}
         />
+        <AtListItem
+          title='个人模板库'
+          arrow='right'
+          thumb={collectionIcon}
+          onClick={() => {}}
+        />
       </AtList>
       <AtModal isOpened={isOpen}>
         <AtModalHeader>授权确认</AtModalHeader>

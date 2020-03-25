@@ -8,7 +8,6 @@ const Survey = () => {
   const [isSubmit, setIsSubmit] = useState(false)
   const router = useRouter()
   const { question } = router.params
-  console.log('ques: ', JSON.parse(question))
   const { id, radios, multiples, judges, answers, title, description, endTime, personLimit } = JSON.parse(question)
 
   useShareAppMessage((res) => {

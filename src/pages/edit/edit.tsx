@@ -2,8 +2,9 @@
 import Taro, { useRouter, useState } from '@tarojs/taro'
 import { View, Text, Radio, RadioGroup, Checkbox, CheckboxGroup } from '@tarojs/components'
 import { AtButton, AtActionSheet, AtActionSheetItem, AtDivider, AtTextarea, AtToast } from 'taro-ui'
-import { useSelector } from '@tarojs/redux'
+import { useSelector, useDispatch } from '@tarojs/redux'
 import Header from '@/components/Header/Header'
+import { getCreateItem, setAnswer, setJudge, setRadio, setMultiple } from '../../actions'
 import './edit.scss'
 
 const Edit = () => {
@@ -11,6 +12,7 @@ const Edit = () => {
   const { title, description, endTime, personLimit } = router.params
   const [isOpen, setIsOpen] = useState(false)
   const [isOpenToast, setIsOpenToast] = useState(false)
+  const dispatch = useDispatch()
   const { radio, multiple, judge, answer, number } = useSelector((state: any) => state.topicReducer)
 
   const toPage = (page) => {
@@ -30,7 +32,6 @@ const Edit = () => {
   }
 
   const createQuestion = () => {
-    console.log('redata: ', data)
     const skey = Taro.getStorageSync('skey')
     data['skey'] = encodeURIComponent(skey)
     Taro.request({
@@ -38,8 +39,17 @@ const Edit = () => {
       data,
       method: 'POST'
     }).then((res) => {
-      setIsOpenToast(true)
-      Taro.navigateTo({url: `/pages/survey/survey?question=${JSON.stringify(res.data.data)}`})
+      if (res.data.code === 1) {
+        setIsOpenToast(true)
+        dispatch(getCreateItem())
+        dispatch(setAnswer({}))
+        dispatch(setJudge({}))
+        dispatch(setRadio({}))
+        dispatch(setMultiple({}))
+        setTimeout(() => {
+          Taro.navigateTo({url: `/pages/survey/survey?question=${JSON.stringify(res.data.data)}`})
+        }, 3000)
+      }
     })
   }
 
