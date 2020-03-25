@@ -19,9 +19,8 @@ const Card = (props) => {
 
   const handleClick = () => {
     setIsOpen(false)
-    const api = type === 'collection' ? 'collection' : 'delete'
     Taro.request({
-      url: `https://www.zhaosongsong.cn/api/v1/questionnaire/${api}`,
+      url: 'https://www.zhaosongsong.cn/api/v1/questionnaire/collection',
       data: {
         id: qId
       },
@@ -60,7 +59,7 @@ const Card = (props) => {
 
   return (
     <View className='card' onClick={() => editQuestion()}>
-      {type !== 'templete' && <AtIcon value='close-circle' size='20' onClick={() => setIsOpen(true)}></AtIcon>}
+      {type === 'question' && <AtIcon value='close-circle' size='20' onClick={() => setIsOpen(true)}></AtIcon>}
       <View className='at-article__h2 card__title'>
         { titleItem }
       </View>

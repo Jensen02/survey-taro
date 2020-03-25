@@ -4,7 +4,7 @@
  * @Author: Jensen
  * @Date: 2020-03-14 12:35:42
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-03-24 23:24:00
+ * @LastEditTime: 2020-03-25 11:47:20
  */
 export const RADIO_ITEM = 'RADIO_ITEM'
 export const MULTIPLE_ITEM = 'MULTIPLE_ITEM'
@@ -23,3 +23,5 @@ export const RADIO_ITEM_WITH_TEMPLETE = 'RADIO_ITEM_WITH_TEMPLETE'
 export const MULTIPLE_ITEM_WITH_TEMPLETE = 'MULTIPLE_ITEM_WITH_TEMPLETE'
 export const JUDGE_ITEM_WITH_TEMPLETE = 'JUDGE_ITEM_WITH_TEMPLETE'
 export const ANSWER_ITEM_WITH_TEMPLETE = 'ANSWER_ITEM_WITH_TEMPLETE'
+
+export const COLLECTION_ITEMS = 'COLLECTION_ITEMS'

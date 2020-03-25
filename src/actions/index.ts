@@ -5,7 +5,7 @@
  * @Author: Jensen
  * @Date: 2020-03-14 12:35:29
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-03-24 23:30:30
+ * @LastEditTime: 2020-03-25 11:57:10
  */
 import {
   RADIO_ITEM,
@@ -17,7 +17,8 @@ import {
   QUESTION_ITEM,
   CREATE_ITEM,
   FINISH_ITEM,
-  PUBLIC_ITEM
+  PUBLIC_ITEM,
+  COLLECTION_ITEMS
 } from '../contants'
 
 export const setRadio = (data: any) => {
@@ -122,6 +123,13 @@ export const setPublicItem = (data) => {
 export const setFinishItem = (data) => {
   return {
     type: FINISH_ITEM,
+    payload: data
+  }
+}
+
+export const setCollections = (data) => {
+  return {
+    type: COLLECTION_ITEMS,
     payload: data
   }
 }
