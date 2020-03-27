@@ -5,7 +5,7 @@
  * @Author: Jensen
  * @Date: 2020-03-14 12:35:29
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-03-25 23:46:51
+ * @LastEditTime: 2020-03-27 21:05:18
  */
 import Taro from '@tarojs/taro'
 import {
@@ -19,7 +19,11 @@ import {
   CREATE_ITEM,
   FINISH_ITEM,
   PUBLIC_ITEM,
-  COLLECTION_ITEMS
+  COLLECTION_ITEMS,
+  IS_DELETE,
+  IS_COLLECTION,
+  COLLECTION_ID,
+  DELETE_ID
 } from '../contants'
 
 // 自定义单选题
@@ -153,6 +157,38 @@ export const setFinishItem = (data) => {
 export const setCollections = (data) => {
   return {
     type: COLLECTION_ITEMS,
+    payload: data
+  }
+}
+
+// 打开或关闭回收问卷modal
+export const setIsCollection = (data) => {
+  return {
+    type: IS_COLLECTION,
+    payload: data
+  }
+}
+
+// 打开或关闭删除问卷modal
+export const setIsDelete = (data) => {
+  return {
+    type: IS_DELETE,
+    payload: data
+  }
+}
+
+// 设置要回收问卷的id
+export const setCollectionId = (data) => {
+  return {
+    type: COLLECTION_ID,
+    payload: data
+  }
+}
+
+// 设置要删除问卷的id
+export const setDeleteId = (data) => {
+  return {
+    type: DELETE_ID,
     payload: data
   }
 }

@@ -10,7 +10,13 @@ import {
   AtMessage
 } from "taro-ui"
 import Card from '@/components/Card/Card'
-import { getCollection } from '../../actions'
+import {
+  // getCreateItem,
+  // getFinishItem,
+  // getPublicItem,
+  getCollection,
+  setIsDelete
+} from '../../actions'
 import './collection.scss'
 
 const dispatch = useDispatch()
@@ -19,7 +25,60 @@ dispatch(getCollection())
 
 const Collection = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const { collections }  = useSelector((state: any) => state.topicReducer)
+  const { collections, deleteId, isDelete }  = useSelector((state: any) => state.topicReducer)
+
+  const handleClick = () => {
+    setIsOpen(false)
+    console.log('deleteid: ', deleteId)
+    Taro.request({
+      url: 'https://www.zhaosongsong.cn/api/v1/questionnaire/collection/delete',
+      data: {
+        id: deleteId
+      },
+      method: 'POST'
+    }).then((res) => {
+      if (res.data.code === 1) {
+        Taro.atMessage({
+          'message': '问卷删除成功',
+          'type': 'success'
+        })
+        dispatch(getCollection())
+      } else {
+        Taro.atMessage({
+          type: 'error',
+          message: '问卷删除失败'
+        })
+      }
+    })
+  }
+
+  const handleDelete = () => {
+    dispatch(setIsDelete(false))
+    setIsOpen(true)
+  }
+
+  const handleRecover = () => {
+    dispatch(setIsDelete(false))
+    console.log('recoverid: ', deleteId)
+    // Taro.request({
+    //   url: 'https://www.zhaosongsong.cn/api/v1/questionnaire/collection/recover',
+    //   data: {
+    //     id: deleteId
+    //   },
+    //   method: 'POST'
+    // }).then((res) => {
+    //   if (res.data.code === 1) {
+    //     Taro.atMessage({
+    //       type: 'success',
+    //       message: '问卷还原成功'
+    //     })
+    //     dispatch(getCollection())
+        // dispatch(getCreateItem())
+        // dispatch(getPublicItem())
+        // dispatch(getFinishItem())
+    //   }
+    // })
+  }
 
   return (
     <View className='collection'>
@@ -39,24 +98,24 @@ const Collection = () => {
           })
         }
       </View>
-      <AtMessage />
-      <AtModal isOpened>
+      <AtModal isOpened={isOpen}>
         <AtModalContent>
           该删除操作将无法进行还原，请确定是否进行删除？
         </AtModalContent>
         <AtModalAction>
-          <Button>取消</Button>
-          <Button>确定</Button>
+          <Button onClick={() => setIsOpen(false)}>取消</Button>
+          <Button onClick={() => handleClick()}>确定</Button>
         </AtModalAction>
       </AtModal>
-      <AtActionSheet isOpened={isOpen} cancelText='取消' onCancel={() => setIsOpen(false)}>
-        <AtActionSheetItem className='delete__item'>
+      <AtActionSheet isOpened={isDelete} cancelText='取消' onCancel={() => dispatch(setIsDelete(false))}>
+        <AtActionSheetItem className='delete__item' onClick={() => handleDelete()}>
           删除
         </AtActionSheetItem>
-        <AtActionSheetItem>
+        <AtActionSheetItem onClick={() => handleRecover()}>
           还原
         </AtActionSheetItem>
       </AtActionSheet>
+      <AtMessage />
     </View>
   )
 }

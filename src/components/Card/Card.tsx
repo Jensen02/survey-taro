@@ -1,35 +1,32 @@
-import Taro, { useState } from '@tarojs/taro'
-import { View, Button } from '@tarojs/components'
-import { AtIcon, AtModal, AtModalContent, AtModalAction, AtToast } from 'taro-ui'
+import Taro from '@tarojs/taro'
+import { View } from '@tarojs/components'
+import { AtIcon} from 'taro-ui'
 import { useDispatch } from '@tarojs/redux'
 import PropTypes from 'prop-types'
 import {
   setAnswerWithTemplete,
   setJudgeWithTemplete,
   setMultipleWithTemplete,
-  setRadioWithTemplete
+  setRadioWithTemplete,
+  setCollectionId,
+  setIsCollection,
+  setIsDelete,
+  setDeleteId
 } from '../../actions'
 import './Card.scss'
 
 const Card = (props) => {
   const { qId, type, titleItem, content } = props
-  const [isOpen, setIsOpen] = useState(false)
-  const [isToast, setIsToast] = useState(false)
   const dispatch = useDispatch()
 
   const handleClick = () => {
-    setIsOpen(false)
-    Taro.request({
-      url: 'https://www.zhaosongsong.cn/api/v1/questionnaire/collection',
-      data: {
-        id: qId
-      },
-      method: 'POST'
-    }).then((res) => {
-      if (parseInt(res.data.code, 10) === 1) {
-        setIsToast(true)
-      }
-    })
+    dispatch(setIsCollection(true))
+    dispatch(setCollectionId(qId))
+  }
+
+  const handleDelete = () => {
+    dispatch(setIsDelete(true))
+    dispatch(setDeleteId(qId))
   }
 
   const editQuestion = () => {
@@ -59,23 +56,14 @@ const Card = (props) => {
 
   return (
     <View className='card' onClick={() => editQuestion()}>
-      {type === 'question' && <AtIcon value='close-circle' size='20' onClick={() => setIsOpen(true)}></AtIcon>}
+      {type === 'question' && <AtIcon value='close-circle' size='20' onClick={() => handleClick()}></AtIcon>}
+      {type === 'collection' && <AtIcon value='menu' size='20' onClick={() => handleDelete()}></AtIcon>}
       <View className='at-article__h2 card__title'>
         { titleItem }
       </View>
       <View className='at-article__p card__content'>
         { content }
       </View>
-      <AtModal isOpened={isOpen}>
-        <AtModalContent>
-          问卷删除后将无法使用，可在回收站进行还原，即可正常使用，请确定是否删除？
-        </AtModalContent>
-        <AtModalAction>
-          <Button onClick={() => setIsOpen(false)}>取消</Button>
-          <Button onClick={() => handleClick()}>确定</Button>
-        </AtModalAction>
-      </AtModal>
-      <AtToast isOpened={isToast} text='问卷成功放入回收站' status='success'></AtToast>
     </View>
   )
 }
