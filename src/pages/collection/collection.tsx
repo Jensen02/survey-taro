@@ -11,9 +11,9 @@ import {
 } from "taro-ui"
 import Card from '@/components/Card/Card'
 import {
-  // getCreateItem,
-  // getFinishItem,
-  // getPublicItem,
+  getCreateItem,
+  getFinishItem,
+  getPublicItem,
   getCollection,
   setIsDelete
 } from '../../actions'
@@ -60,24 +60,24 @@ const Collection = () => {
   const handleRecover = () => {
     dispatch(setIsDelete(false))
     console.log('recoverid: ', deleteId)
-    // Taro.request({
-    //   url: 'https://www.zhaosongsong.cn/api/v1/questionnaire/collection/recover',
-    //   data: {
-    //     id: deleteId
-    //   },
-    //   method: 'POST'
-    // }).then((res) => {
-    //   if (res.data.code === 1) {
-    //     Taro.atMessage({
-    //       type: 'success',
-    //       message: '问卷还原成功'
-    //     })
-    //     dispatch(getCollection())
-        // dispatch(getCreateItem())
-        // dispatch(getPublicItem())
-        // dispatch(getFinishItem())
-    //   }
-    // })
+    Taro.request({
+      url: 'https://www.zhaosongsong.cn/api/v1/questionnaire/collection/recover',
+      data: {
+        id: deleteId
+      },
+      method: 'POST'
+    }).then((res) => {
+      if (res.data.code === 1) {
+        Taro.atMessage({
+          type: 'success',
+          message: '问卷还原成功'
+        })
+        dispatch(getCollection())
+        dispatch(getCreateItem())
+        dispatch(getPublicItem())
+        dispatch(getFinishItem())
+      }
+    })
   }
 
   return (

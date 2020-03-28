@@ -24,7 +24,7 @@ const Multiple = () => {
         return {...state, dContent: action.payload}
         break
       case 'e':
-        return {...state, eContent: action.payloaC}
+        return {...state, eContent: action.payload}
         break
       case 'f':
         return {...state, fContent: action.payload}

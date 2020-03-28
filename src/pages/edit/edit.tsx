@@ -13,7 +13,7 @@ const Edit = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [isOpenToast, setIsOpenToast] = useState(false)
   const dispatch = useDispatch()
-  const { radio, multiple, judge, answer, number } = useSelector((state: any) => state.topicReducer)
+  const { radio, multiple, judge, answer } = useSelector((state: any) => state.topicReducer)
 
   const toPage = (page) => {
     setIsOpen(false)
@@ -42,11 +42,11 @@ const Edit = () => {
       if (res.data.code === 1) {
         setIsOpenToast(true)
         dispatch(getCreateItem())
-        dispatch(setAnswer({}))
-        dispatch(setJudge({}))
-        dispatch(setRadio({}))
-        dispatch(setMultiple({}))
         setTimeout(() => {
+          dispatch(setAnswer({}))
+          dispatch(setJudge({}))
+          dispatch(setRadio({}))
+          dispatch(setMultiple({}))
           Taro.navigateTo({url: `/pages/survey/survey?question=${JSON.stringify(res.data.data)}`})
         }, 3000)
       }
@@ -145,7 +145,7 @@ const Edit = () => {
             answer.map((item, index) => {
               return (
                 <View key={index}>
-                  <Text className='problem'>{`${number - answer.length + index +1} - ${item.problem}`}</Text>
+                  <Text className='problem'>{`${radio.length + multiple.length + judge.length + index +1} - ${item.problem}`}</Text>
                   <AtTextarea
                     showConfirmBar
                     count={false}

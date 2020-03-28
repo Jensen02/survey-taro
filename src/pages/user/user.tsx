@@ -16,6 +16,7 @@ import { setUserInfo, setUserIsLogin } from '../../actions'
 import collectionIcon from '../../images/icon/collection.png'
 import recordIcon from '../../images/icon/record.png'
 import infoIcon from '../../images/icon/info.png'
+import templeteIcon from '../../images/icon/templete.png'
 import './user.scss'
 
 const dispatch = useDispatch()
@@ -121,7 +122,7 @@ const User = () => {
         <AtListItem
           title='个人模板库'
           arrow='right'
-          thumb={collectionIcon}
+          thumb={templeteIcon}
           onClick={() => {}}
         />
       </AtList>
