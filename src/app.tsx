@@ -42,8 +42,9 @@ class App extends Component {
   }
   config: Config = {
     pages: [
-      'pages/questionnaire/questionnaire',
+      'pages/home/home',
       'pages/user/user',
+      'pages/questionnaire/questionnaire',
       'pages/create/create',
       'pages/edit/edit',
       'pages/answer/answer',
@@ -71,7 +72,7 @@ class App extends Component {
       list: [
         {
           pagePath: 'pages/questionnaire/questionnaire',
-          text: '问卷广场',
+          text: '首页',
           iconPath: questionnaire,
           selectedIconPath: questionnaireSelected
         },
