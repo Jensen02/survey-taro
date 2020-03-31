@@ -3,6 +3,8 @@ import { View } from '@tarojs/components'
 import Card from '@/components/Card/Card'
 import './templete.scss'
 
+
+
 const Templete = () => {
   const router = useRouter()
   const { type } = router.params

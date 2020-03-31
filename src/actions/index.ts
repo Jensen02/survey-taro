@@ -5,7 +5,7 @@
  * @Author: Jensen
  * @Date: 2020-03-14 12:35:29
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-03-27 21:05:18
+ * @LastEditTime: 2020-03-29 20:18:06
  */
 import Taro from '@tarojs/taro'
 import {
@@ -23,7 +23,8 @@ import {
   IS_DELETE,
   IS_COLLECTION,
   COLLECTION_ID,
-  DELETE_ID
+  DELETE_ID,
+  PUBLIC_QUESTION
 } from '../contants'
 
 // 自定义单选题
@@ -189,6 +190,14 @@ export const setCollectionId = (data) => {
 export const setDeleteId = (data) => {
   return {
     type: DELETE_ID,
+    payload: data
+  }
+}
+
+// 设置问卷发布状态
+export const setIsPublic = (data) => {
+  return {
+    type: PUBLIC_QUESTION,
     payload: data
   }
 }

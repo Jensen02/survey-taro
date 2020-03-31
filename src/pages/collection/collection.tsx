@@ -29,7 +29,6 @@ const Collection = () => {
 
   const handleClick = () => {
     setIsOpen(false)
-    console.log('deleteid: ', deleteId)
     Taro.request({
       url: 'https://www.zhaosongsong.cn/api/v1/questionnaire/collection/delete',
       data: {
@@ -59,7 +58,6 @@ const Collection = () => {
 
   const handleRecover = () => {
     dispatch(setIsDelete(false))
-    console.log('recoverid: ', deleteId)
     Taro.request({
       url: 'https://www.zhaosongsong.cn/api/v1/questionnaire/collection/recover',
       data: {

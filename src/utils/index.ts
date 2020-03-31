@@ -5,7 +5,7 @@
  * @Author: Jensen
  * @Date: 2020-03-24 20:47:46
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-03-24 20:55:28
+ * @LastEditTime: 2020-03-31 17:11:28
  */
 
 /**
@@ -25,5 +25,21 @@ export const classifyQuestionItem = (data: [], type: string) => {
     return
   })
 
+  return result
+}
+
+/**
+ * @description: 将map转换为object
+ * @param {Map} map 为需要转换的map对象
+ * @return: object
+ */
+export const convertMapToObject = (map: any) => {
+  if (map.size === 0) {
+    return {}
+  }
+  const result = Object.create(null)
+  for (const [key, value] of map) {
+    result[key] = value
+  }
   return result
 }

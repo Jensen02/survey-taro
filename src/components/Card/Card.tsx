@@ -56,8 +56,9 @@ const Card = (props) => {
 
   return (
     <View className='card' onClick={() => editQuestion()}>
-      {type === 'question' && <AtIcon value='close-circle' size='20' onClick={() => handleClick()}></AtIcon>}
+      {type === 'finish' && <AtIcon value='close-circle' size='20' onClick={() => handleClick()}></AtIcon>}
       {type === 'collection' && <AtIcon value='menu' size='20' onClick={() => handleDelete()}></AtIcon>}
+      {['create', 'public'].includes(type) && <AtIcon value='menu' size='20' onClick={() => handleClick()}></AtIcon>}
       <View className='at-article__h2 card__title'>
         { titleItem }
       </View>

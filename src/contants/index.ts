@@ -4,7 +4,7 @@
  * @Author: Jensen
  * @Date: 2020-03-14 12:35:42
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-03-27 20:57:44
+ * @LastEditTime: 2020-03-29 20:15:16
  */
 export const RADIO_ITEM = 'RADIO_ITEM'
 export const MULTIPLE_ITEM = 'MULTIPLE_ITEM'
@@ -29,3 +29,5 @@ export const IS_DELETE = 'IS_DELETE'
 export const DELETE_ID = 'DELETE_ID'
 export const IS_COLLECTION = 'IS_COLLECTION'
 export const COLLECTION_ID = 'COLLECTION_ID'
+
+export const PUBLIC_QUESTION = 'PUBLIC_QUESTION'

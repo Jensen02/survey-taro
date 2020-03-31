@@ -4,7 +4,7 @@
  * @Author: Jensen
  * @Date: 2020-03-14 12:35:36
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-03-27 21:39:19
+ * @LastEditTime: 2020-03-29 20:40:53
  */
 import { combineReducers } from 'redux'
 import {
@@ -22,7 +22,8 @@ import {
   IS_DELETE,
   IS_COLLECTION,
   DELETE_ID,
-  COLLECTION_ID
+  COLLECTION_ID,
+  PUBLIC_QUESTION
 } from '../contants'
 
 interface Topic {
@@ -41,7 +42,8 @@ interface Topic {
   isCollection: boolean,
   collectionId: string,
   isDelete: boolean,
-  deleteId: string
+  deleteId: string,
+  isPublic: boolean
 }
 
 const INIT_STATE: Topic = {
@@ -60,7 +62,8 @@ const INIT_STATE: Topic = {
   isCollection: false,
   collectionId: '',
   isDelete: false,
-  deleteId: ''
+  deleteId: '',
+  isPublic: false
 }
 
 const topicReducer = (state = INIT_STATE, action) => {
@@ -155,6 +158,12 @@ const topicReducer = (state = INIT_STATE, action) => {
       return {
         ...state,
         deleteId: payload
+      }
+      break
+    case PUBLIC_QUESTION:
+      return {
+        ...state,
+        isPublic: payload
       }
       break
     default:
