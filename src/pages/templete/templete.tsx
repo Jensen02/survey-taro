@@ -1,22 +1,31 @@
-import Taro, { useRouter } from '@tarojs/taro'
+import Taro from '@tarojs/taro'
 import { View } from '@tarojs/components'
+import { useDispatch, useSelector } from '@tarojs/redux'
 import Card from '@/components/Card/Card'
+import { getTempletesWithType } from '../../actions'
 import './templete.scss'
 
-
+const dispatch = useDispatch()
+dispatch(getTempletesWithType())
 
 const Templete = () => {
-  const router = useRouter()
-  const { type } = router.params
-
+  const { templetes } = useSelector((state: any) => state.topicReducer)
   return (
     <View>
-      <Card
-        qId='sdgdsfgdsfgsd34f34fdf3rr3d'
-        type='templete'
-        titleItem='关于元宵节的调查'
-        content='这是文本段落。这是文本段落。这是文本段落。这是文本段落。这是文本段落。这是文本段sdfsdfgsd'
-      />
+      {
+        templetes && templetes.map((item) => {
+          const { id, title, description } = item
+          return (
+            <Card
+              qId={id}
+              key={id}
+              type='templete'
+              titleItem={title}
+              content={description}
+            />
+          )
+        })
+      }
     </View>
   )
 }

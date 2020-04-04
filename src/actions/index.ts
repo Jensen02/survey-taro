@@ -5,7 +5,7 @@
  * @Author: Jensen
  * @Date: 2020-03-14 12:35:29
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-03-29 20:18:06
+ * @LastEditTime: 2020-04-04 22:46:38
  */
 import Taro from '@tarojs/taro'
 import {
@@ -24,7 +24,9 @@ import {
   IS_COLLECTION,
   COLLECTION_ID,
   DELETE_ID,
-  PUBLIC_QUESTION
+  PUBLIC_QUESTION,
+  TEMPLETE_TYPE,
+  GET_TEMPLETE
 } from '../contants'
 
 // 自定义单选题
@@ -202,6 +204,22 @@ export const setIsPublic = (data) => {
   }
 }
 
+// 设置问卷模板类型
+export const setTempleteType = (data) => {
+  return {
+    type: TEMPLETE_TYPE,
+    payload: data
+  }
+}
+
+// 设置问卷模板题目
+export const setTempletes = (data) => {
+  return {
+    type: GET_TEMPLETE,
+    payload: data
+  }
+}
+
 // 获取已创建问卷
 export const getCreateItem = () => {
   return (dispatch: any) => {
@@ -300,6 +318,24 @@ export const recoverQuestionnaire = (id) => {
         dispatch(getCreateItem())
         dispatch(getFinishItem())
         dispatch(getFinishItem())
+      }
+    })
+  }
+}
+
+// 根据问卷模板类型获取问卷模板
+export const getTempletesWithType = () => {
+  return (dispatch: any, getState: any) => {
+    const { templeteType } = getState().topicReducer
+    Taro.request({
+      url: 'https://www.zhaosongsong.cn/api/v1/templete/query/type',
+      data: {
+        type: templeteType
+      },
+      method: 'GET'
+    }).then((res) => {
+      if (res.data.code === 1) {
+        dispatch(setTempletes(res.data.data))
       }
     })
   }

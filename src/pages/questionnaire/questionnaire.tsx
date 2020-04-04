@@ -1,6 +1,8 @@
 import Taro from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { AtGrid } from 'taro-ui'
+import { useDispatch } from '@tarojs/redux'
+import { setTempleteType, getTempletesWithType } from '../../actions'
 import icon1 from '../../images/icon/icon1.png'
 // import icon2 from '../../images/icon/icon2.png'
 import icon3 from '../../images/icon/icon3.png'
@@ -13,6 +15,7 @@ import icon9 from '../../images/icon/icon9.png'
 import icon10 from '../../images/icon/icon10.png'
 import icon11 from '../../images/icon/icon11.png'
 
+const dispatch = useDispatch()
 function Questionnaire () {
   const data = [
       {
@@ -74,8 +77,10 @@ function Questionnaire () {
         url: '/pages/create/create'
       })
     } else {
+      dispatch(setTempleteType(item.type))
+      dispatch(getTempletesWithType())
       Taro.navigateTo({
-        url: `/pages/templete/templete?type=${item.type}`
+        url: '/pages/templete/templete'
       })
     }
   }
