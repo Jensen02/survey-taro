@@ -2,7 +2,7 @@
 import Taro, { Component, Config } from '@tarojs/taro'
 import { Provider } from '@tarojs/redux'
 import store from './store'
-import Questionnaire from './pages/questionnaire/questionnaire'
+import Home from './pages/home/home'
 import User from './pages/user/user'
 import './app.scss'
 import questionnaire from './images/icon/questionnaire.png'
@@ -71,7 +71,7 @@ class App extends Component {
       position: 'bottom',
       list: [
         {
-          pagePath: 'pages/questionnaire/questionnaire',
+          pagePath: 'pages/home/home',
           text: '首页',
           iconPath: questionnaire,
           selectedIconPath: questionnaireSelected
@@ -88,7 +88,7 @@ class App extends Component {
   render() {
     return (
       <Provider store={store} >
-        <Questionnaire />
+        <Home />
         <User />
       </Provider>
     )

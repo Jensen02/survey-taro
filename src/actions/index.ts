@@ -5,7 +5,7 @@
  * @Author: Jensen
  * @Date: 2020-03-14 12:35:29
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-04-04 22:46:38
+ * @LastEditTime: 2020-04-05 21:50:01
  */
 import Taro from '@tarojs/taro'
 import {
@@ -327,6 +327,9 @@ export const recoverQuestionnaire = (id) => {
 export const getTempletesWithType = () => {
   return (dispatch: any, getState: any) => {
     const { templeteType } = getState().topicReducer
+    if (!templeteType.length) {
+      return
+    }
     Taro.request({
       url: 'https://www.zhaosongsong.cn/api/v1/templete/query/type',
       data: {

@@ -6,9 +6,10 @@ import { getTempletesWithType } from '../../actions'
 import './templete.scss'
 
 const dispatch = useDispatch()
-dispatch(getTempletesWithType())
+// dispatch(getTempletesWithType())
 
 const Templete = () => {
+  dispatch(getTempletesWithType())
   const { templetes } = useSelector((state: any) => state.topicReducer)
   return (
     <View>

@@ -5,7 +5,7 @@
  * @Author: Jensen
  * @Date: 2019-12-13 23:01:20
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-03-15 10:08:11
+ * @LastEditTime: 2020-04-05 21:08:43
  */
 // import path from 'path'
 const path = require('path')
@@ -60,6 +60,9 @@ const config = {
     }
   },
   mini: {
+    compile: {
+      exclude: ['src/components/ec-canvas/echarts.js']
+    },
     postcss: {
       autoprefixer: {
         enable: true,
